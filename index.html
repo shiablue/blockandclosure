@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Block And Closure by shiablue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Block And Closure</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/shiablue/blockandclosure" class="btn">View on GitHub</a>
+      <a href="https://github.com/shiablue/blockandclosure/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/shiablue/blockandclosure/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="objective-c-block" class="anchor" href="#objective-c-block" aria-hidden="true"><span class="octicon octicon-link"></span></a>Objective-C Block</h1>
+
+<p>see: <a href="http://fuckingblocksyntax.com/">http://fuckingblocksyntax.com/</a></p>
+
+<h2>
+<a id="as-a-local-variable" class="anchor" href="#as-a-local-variable" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a local variable:</h2>
+
+<div class="highlight highlight-objective-c"><pre><span class="pl-en">returnType</span> (^blockName)(parameterTypes) = ^returnType(parameters) {...};</pre></div>
+
+<h2>
+<a id="as-a-property" class="anchor" href="#as-a-property" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a property:</h2>
+
+<div class="highlight highlight-objective-c"><pre>@property (nonatomic, copy) returnType (^blockName)(parameterTypes);</pre></div>
+
+<h2>
+<a id="as-a-method-parameter" class="anchor" href="#as-a-method-parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a method parameter:</h2>
+
+<div class="highlight highlight-objective-c"><pre>- (<span class="pl-k">void</span>)someMethodThatTakesABlock:(returnType (^) (parameterTypes))blockName;</pre></div>
+
+<h2>
+<a id="as-an-argument-to-a-method-call" class="anchor" href="#as-an-argument-to-a-method-call" aria-hidden="true"><span class="octicon octicon-link"></span></a>As an argument to a method call:</h2>
+
+<div class="highlight highlight-objective-c"><pre>[someObject <span class="pl-c1">someMethodTahtTakesABlock:</span>^<span class="pl-c1">returnType</span> (parameters) {...}];</pre></div>
+
+<h2>
+<a id="as-a-typedef" class="anchor" href="#as-a-typedef" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a typedef:</h2>
+
+<div class="highlight highlight-objective-c"><pre><span class="pl-k">typedef</span> <span class="pl-en">returnType</span> (^TypeName)(parameterTypes);
+TypeName blockName = ^returnType(parameters) {...};</pre></div>
+
+<hr>
+
+<hr>
+
+<h1>
+<a id="swift-closure" class="anchor" href="#swift-closure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Swift Closure</h1>
+
+<p>see: <a href="http://fuckingclosuresyntax.com/">http://fuckingclosuresyntax.com/</a></p>
+
+<h2>
+<a id="as-a-variable" class="anchor" href="#as-a-variable" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a variable:</h2>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">var</span> closureName: (parameterTypes) <span class="pl-k">-&gt;</span> (returnType)</pre></div>
+
+<h2>
+<a id="as-an-optional-variable" class="anchor" href="#as-an-optional-variable" aria-hidden="true"><span class="octicon octicon-link"></span></a>As an optional variable:</h2>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">var</span> closureName: ((parameterTypes) <span class="pl-k">-&gt;</span> (returnType))?</pre></div>
+
+<h2>
+<a id="as-a-type-alias" class="anchor" href="#as-a-type-alias" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a type alias:</h2>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">typealias</span> closureType <span class="pl-k">=</span> (parameterTypes) <span class="pl-k">-&gt;</span> (returnType)</pre></div>
+
+<h2>
+<a id="as-a-constant" class="anchor" href="#as-a-constant" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a constant:</h2>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">let</span> closureName: closureType <span class="pl-k">=</span> {<span class="pl-k">...</span>}</pre></div>
+
+<h2>
+<a id="as-an-argument-to-a-function-call" class="anchor" href="#as-an-argument-to-a-function-call" aria-hidden="true"><span class="octicon octicon-link"></span></a>As an argument to a function call:</h2>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">func</span>({(parameterTypes) <span class="pl-k">-&gt;</span> (returnType) <span class="pl-k">in</span> statements})</pre></div>
+
+<h2>
+<a id="as-a-function-parameter" class="anchor" href="#as-a-function-parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a function parameter:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span>({ (item1: <span class="pl-c1">Int</span>, item2: <span class="pl-c1">Int</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Bool</span> <span class="pl-k">in</span> <span class="pl-k">return</span> item1 <span class="pl-k">&lt;</span> item2 })</pre></div>
+
+<h2>
+<a id="as-a-function-parameter-with-implied-types" class="anchor" href="#as-a-function-parameter-with-implied-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a function parameter with implied types:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span>({ (item1, item2) <span class="pl-k">-&gt;</span> <span class="pl-c1">Bool</span> <span class="pl-k">in</span> <span class="pl-k">return</span> item1 <span class="pl-k">&lt;</span> item2 })</pre></div>
+
+<h2>
+<a id="as-a-function-parameter-with-implied-return-type" class="anchor" href="#as-a-function-parameter-with-implied-return-type" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a function parameter with implied return type:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span>({ (item1, item2) <span class="pl-k">in</span> <span class="pl-k">return</span> item1 <span class="pl-k">&lt;</span> item2 })</pre></div>
+
+<h2>
+<a id="as-the-last-function-parameter" class="anchor" href="#as-the-last-function-parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>As the last function parameter:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span> { (item1, item2) <span class="pl-k">in</span> <span class="pl-k">return</span> item1 <span class="pl-k">&lt;</span> item2 }</pre></div>
+
+<h2>
+<a id="as-the-last-parameter-using-shorthand-argument-names" class="anchor" href="#as-the-last-parameter-using-shorthand-argument-names" aria-hidden="true"><span class="octicon octicon-link"></span></a>As the last parameter, using shorthand argument names:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span> { <span class="pl-k">return</span> $<span class="pl-c1">0</span> <span class="pl-k">&lt;</span> $<span class="pl-c1">1</span> }</pre></div>
+
+<h2>
+<a id="as-the-last-parameter-with-an-implied-return-value" class="anchor" href="#as-the-last-parameter-with-an-implied-return-value" aria-hidden="true"><span class="octicon octicon-link"></span></a>As the last parameter, with an implied return value:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span> { $<span class="pl-c1">0</span> <span class="pl-k">&lt;</span> $<span class="pl-c1">1</span> }</pre></div>
+
+<h2>
+<a id="as-the-last-parameter-as-a-reference-to-an-existing-function" class="anchor" href="#as-the-last-parameter-as-a-reference-to-an-existing-function" aria-hidden="true"><span class="octicon octicon-link"></span></a>As the last parameter, as a reference to an existing function:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span>(<span class="pl-k">&lt;</span>)</pre></div>
+
+<h2>
+<a id="as-a-function-parameter-with-explicit-capture-semantics" class="anchor" href="#as-a-function-parameter-with-explicit-capture-semantics" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a function parameter with explicit capture semantics:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span>({ [<span class="pl-k">unowned</span> <span class="pl-k">self</span>] (item1: <span class="pl-c1">Int</span>, item2: <span class="pl-c1">Int</span>) <span class="pl-k">-&gt;</span> <span class="pl-c1">Bool</span> <span class="pl-k">in</span> <span class="pl-k">return</span> item1 <span class="pl-k">&lt;</span> item2 })</pre></div>
+
+<h2>
+<a id="as-a-function-parameter-with-explicit-capture-semantics-and-inferred-parameters--return-type" class="anchor" href="#as-a-function-parameter-with-explicit-capture-semantics-and-inferred-parameters--return-type" aria-hidden="true"><span class="octicon octicon-link"></span></a>As a function parameter with explicit capture semantics and inferred parameters / return type:</h2>
+
+<div class="highlight highlight-swift"><pre>array<span class="pl-k">.</span><span class="pl-c1">sort</span>({ [<span class="pl-k">unowned</span> <span class="pl-k">self</span>] <span class="pl-k">in</span> <span class="pl-k">return</span> item1 <span class="pl-k">&lt;</span> item2 })</pre></div>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/shiablue/blockandclosure">Block And Closure</a> is maintained by <a href="https://github.com/shiablue">shiablue</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
